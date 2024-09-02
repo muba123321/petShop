@@ -10,23 +10,25 @@ const API_KEY_CAT =
 export async function getPets(Value) {
   try {
     const [dogRes, catRes] = await Promise.all([
-      fetch(`${API_DOG_URL}/images/search?breed_ids=${Value}`, {
+      fetch(`${API_DOG_URL}/images/search?limit=10&breed_ids=${Value}`, {
         headers: {
           "x-api-key": API_KEY_DOG,
         },
       }),
-      fetch(`${API_CAT_URL}/images/search?breed_ids=${Value}`, {
+      fetch(`${API_CAT_URL}/images/search?limit=10&breed_ids=${Value}`, {
         headers: {
           "x-api-key": API_KEY_CAT,
         },
       }),
     ]);
     const dogData = await dogRes.json();
+    
     const catData = await catRes.json();
-    console.log(dogData);
-    console.log(catData);
-
-    return { ...dogData, ...catData };
+    // console.log(dogData);
+    // console.log(dogData.length);
+    // console.log(catData.length);
+    // console.log(catData);
+    return [ ...dogData, ...catData ];
   } catch (e) {
     console.error(e);
   }
