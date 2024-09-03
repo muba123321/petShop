@@ -1,7 +1,5 @@
-import { getPets } from "./backend/api.js";
-import { getCats } from "./backend/api.js";
-import { getDogs } from "./backend/api.js";
-import { showData, showDetailedData } from "./cardWidget.js";
+import { getPets, getCats, getDogs } from "../backend/api.js";
+import { showData, showDetailedData  } from "./cardWidget.js";
 
 const searchBar = document.getElementById("searchBar");
 
@@ -14,7 +12,7 @@ searchBar.addEventListener("input", async () => {
   if (searchValue.length > 0) {
     const petData = await getPets(searchValue);
     // console.log('this is ' + petData);
-    showDetailedData(petData)
+    showDetailedData(petData);
   }
 });
 
